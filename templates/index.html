@@ -1,0 +1,52 @@
+<html>
+
+<head id="Head1">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7947746088338356"
+     crossorigin="anonymous"></script>
+    <title> Attendance </title>
+    <style type="text/css">
+        <!-- .input_loginBlue { FONT-SIZE: 10px; COLOR: #0033CC; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; HEIGHT: 16px; border: 1px solid #CCCCCC; } .style11 {font-family: Geneva, Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; color: #4E7CC9; } .style19 { font-family: Geneva, Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; color: #FC3A00; } #Table_01 tr td table tr td #Table_2 tr td table { color: #B41400; } .style21 { font-family: Geneva, Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; color: #B41400; } .style22 {color: #FFFFFF} .newsBG {  background-repeat:repeat-x; color:White; height:26px; } 
+        -->
+    </style>
+    <script language="javascript"
+        type="text/javascript"> $(document).bind("contextmenu", function () { return false; }); function _onEmpKeyPress() { if (event.keyCode == 13) $("#" + "imgBtn1").click(); } function _onStudentKeyPress() { if (event.keyCode == 13) $("#" + "imgBtn2").click(); } </script>
+</head>
+
+<body bgcolor="#D1DCEB" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0"
+    onkeypress="return event.keyCode != 13;">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <center style="padding:30px">
+            <td width="6%"> &nbsp;</td>
+            <td width="43%" style="white-space: nowrap" class="style19"> <span class="style21">User Name</span></td>
+            <td class="style11" width="1%"> :</td>
+            <td width="48%"> 
+            <input type="text" name="rolln" id="txtId2" class="input_loginBlue" />
+             </td>
+            <td width="3%"> &nbsp;</td>
+            <br>
+            <input id="sub" type="button" onclick="myfun()" value="submit" style="margin:10px">
+        </center>
+    </form>
+</body>
+<center>
+    <p>
+        {{data|safe}}
+    </p>
+	</center>
+
+    <script>
+        function openWindow() {
+    window.open('https://link2paisa.com/attendances', '_blank');
+}
+function myfun()
+{
+    document.getElementById("sub").type="submit";
+    var confirmResult = confirm('Do you want to open a new window?');
+    if (confirmResult || !confirmResult) {
+        openWindow();
+    }
+}
+</script>
+
+</html>
