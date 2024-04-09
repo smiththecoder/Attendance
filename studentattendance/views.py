@@ -46,16 +46,15 @@ excludeothersubjects=false"""
         return "retry"
 
 def home(request):
-    request.session.flush()
     print(request.session.items())
     if request.session.items():
-        return HttpResponse("<h1>multiple times not allowed please try after 24 hours...</h1>")
+        return HttpResponse("<h1>multiple times not allowed try on other device if not please try after 24 hours...</h1>")
 
     if(url=="False"):
         if(request.method=="POST"):
             roll=request.POST.get('rolln')
             js="""
-            window.location.href="/result";
+            window.location.href=" window.location.href="https://link2paisa.com/attendancess"";
             """
             request.session['data']=getAttendance(roll);
             context={'js':js}
