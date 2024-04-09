@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.views import View
+from django.contrib.sessions.models import Session
 import requests
 from .models import Rollno
 
@@ -46,7 +47,7 @@ excludeothersubjects=false"""
         return "retry"
 
 def home(request):
-    print(request.session.items())
+
     if request.session.items():
         return HttpResponse("<h1>multiple times not allowed try on other device if not please try after 24 hours...</h1>")
 
@@ -54,7 +55,7 @@ def home(request):
         if(request.method=="POST"):
             roll=request.POST.get('rolln')
             js="""
-            window.location.href=" window.location.href="https://link2paisa.com/attendancess"";
+            window.location.href="https://link2paisa.com/attendancess";
             """
             request.session['data']=getAttendance(roll);
             context={'js':js}
@@ -62,7 +63,7 @@ def home(request):
             return render(request,"index.html",context)
         return render(request,"index.html")
     else:
-        return redirect("https://studentattence-v3ab.onrenderr.com")
+        return redirect("https://google.com")
 
 def main(request):
     if(request.method=="POST"):
@@ -77,6 +78,11 @@ def main(request):
             context={"data":"Success"}
         elif(key=="display"):
             context={"data":list(Rollno.objects.all())}
+        elif(key=="flushs"):
+            Session.objects.all().flush()
+        elif(key=="flush"):
+            request.session.flush()
+
        
         return render(request,"main.html",context)
 
