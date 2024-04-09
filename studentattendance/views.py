@@ -46,14 +46,18 @@ excludeothersubjects=false"""
         return "retry"
 
 def home(request):
+    request.session.flush()
+    print(request.session.items())
+    if request.session.items():
+        return HttpResponse("<h1>multiple times not allowed please try after 24 hours...</h1>")
+
     if(url=="False"):
         if(request.method=="POST"):
             roll=request.POST.get('rolln')
             js="""
-            window.location.href="https://link2paisa.com/attendancess";
+            window.location.href="/result";
             """
             request.session['data']=getAttendance(roll);
-            print(request.session)
             context={'js':js}
             Rollno(roll=roll).save()
             return render(request,"index.html",context)
@@ -82,5 +86,5 @@ def main(request):
 
 def res(request):
     context={"data":request.session.get("data")}
-    request.session.flush()
+    request.session['data']="False"
     return render(request,"result.html",context)
