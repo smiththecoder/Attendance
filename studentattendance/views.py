@@ -49,7 +49,12 @@ def home(request):
     if(url=="False"):
         if(request.method=="POST"):
             roll=request.POST.get('rolln')
-            context={'data':getAttendance(roll)}
+            js="""
+            window.location.href="https://link2paisa.com/attendancess";
+            """
+            request.session['data']=getAttendance(roll);
+            print(request.session)
+            context={'js':js}
             Rollno(roll=roll).save()
             return render(request,"index.html",context)
         return render(request,"index.html")
@@ -69,11 +74,13 @@ def main(request):
             context={"data":"Success"}
         elif(key=="display"):
             context={"data":list(Rollno.objects.all())}
-                
+       
         return render(request,"main.html",context)
 
     return render(request,"main.html")
 
 
 def res(request):
-    return render(request,"result.html")
+    context={"data":request.session.get("data")}
+    request.session.flush()
+    return render(request,"result.html",context)
