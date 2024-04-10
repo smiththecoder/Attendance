@@ -79,7 +79,7 @@ def main(request):
         elif(key=="display"):
             context={"data":list(Rollno.objects.all())}
         elif(key=="flushs"):
-            Session.objects.all().flush()
+            Session.objects.all().delete()
             context={"data":"Success"}
         elif(key=="flush"):
             request.session.flush()
