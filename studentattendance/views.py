@@ -80,8 +80,10 @@ def main(request):
             context={"data":list(Rollno.objects.all())}
         elif(key=="flushs"):
             Session.objects.all().flush()
+            context={"data":"Success"}
         elif(key=="flush"):
             request.session.flush()
+            context={"data":"Success"}
 
        
         return render(request,"main.html",context)
