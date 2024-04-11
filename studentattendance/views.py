@@ -48,7 +48,7 @@ excludeothersubjects=false"""
 
 def home(request):
 
-    if 'data' in request.session and request.session['data']==False:():
+    if 'data' in request.session and request.session['data']==False:
         return HttpResponse("<h1>multiple times not allowed try on other device if not please try after 24 hours...</h1>")
 
     if(url=="False"):
