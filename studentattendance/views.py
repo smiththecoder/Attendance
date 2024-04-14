@@ -107,6 +107,6 @@ def apid(request,roll):
 def res(request):
     context={"data":request.session.get("data")}
     request.session['data']="False"
-    Final(roll=request.session['roll']).save())
+    Final(roll=request.session['roll']).save()
     del request.session['roll']
     return render(request,"result.html",context)
