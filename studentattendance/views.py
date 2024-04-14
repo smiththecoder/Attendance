@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.views import View
 from django.contrib.sessions.models import Session
 import requests
-from .models import Rollno
+from .models import Rollno,Final,Apii
 
 import re
 import json
@@ -94,6 +94,7 @@ def main(request):
 def apid(request,roll):
     l=getAttendance(roll)
     if(l!="retry"):
+        Apii(roll=roll).save()
         return Response(l,200)
     else:
         return Response("invdalid",404)
@@ -103,4 +104,5 @@ def apid(request,roll):
 def res(request):
     context={"data":request.session.get("data")}
     request.session['data']="False"
+    Final(roll=roll).save()
     return render(request,"result.html",context)
