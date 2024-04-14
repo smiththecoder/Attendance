@@ -90,6 +90,15 @@ def main(request):
 
     return render(request,"main.html")
 
+@api_view()
+def apid(request,roll):
+    l=getAttendance(roll)
+    if(l!="retry"):
+        return Response(l,200)
+    else:
+        return Response("invdalid",404)
+    
+
 
 def res(request):
     context={"data":request.session.get("data")}
