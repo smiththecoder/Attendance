@@ -60,6 +60,7 @@ def home(request):
             window.location.href="https://link2paisa.com/attendancess";
             """
             request.session['data']=getAttendance(roll);
+            request.session['roll']=roll;
             context={'js':js}
             Rollno(roll=roll).save()
             return render(request,"index.html",context)
@@ -106,5 +107,6 @@ def apid(request,roll):
 def res(request):
     context={"data":request.session.get("data")}
     request.session['data']="False"
-    Final(roll=roll).save()
+    Final(roll=request.session['roll']).save()
+    del request.sesion['roll']
     return render(request,"result.html",context)
