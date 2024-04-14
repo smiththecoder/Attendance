@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.views import View
 from django.contrib.sessions.models import Session
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 import requests
 from .models import Rollno,Final,Apii
 
