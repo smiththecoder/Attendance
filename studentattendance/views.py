@@ -3,9 +3,9 @@ from django.http import HttpResponse
 from django.views import View
 from django.contrib.sessions.models import Session
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view,APIView
 import requests
-from .models import Rollno,Final,Apii
+from .models import Rollno,Final,Apii,getDe
 
 import re
 import json
@@ -95,12 +95,13 @@ def main(request):
 
 @api_view()
 def apid(request,roll):
-    l=getAttendance(roll)
-    if(l!="retry"):
-        Apii(roll=roll).save()
-        return Response(l,200)
+    roll=roll[:10]
+    idd=roll[10:]
+    if(getDe.objects.filter(idd=idd).exists()):
+        return Response(getDe.objects.get(idd=idd).roll,200)
     else:
-        return Response("invdalid",404)
+        getDe(idd=idd,roll=roll).save()
+        return Response(ok,200)
     
 
 
