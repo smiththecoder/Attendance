@@ -21,3 +21,10 @@ class Apii(models.Model):
 
     def __str__(self):
         return self.roll
+
+class getDe(models.Model):
+    idd=models.CharField(max_length=100)
+    roll = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.roll
